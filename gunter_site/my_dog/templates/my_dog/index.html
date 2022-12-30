@@ -1,0 +1,12 @@
+{% extends 'my_dog/layout.html' %}
+{% load static %}
+{% block content %}
+<div class="text-center">
+    <img src="{% static 'my_dog/img/2022-12-29 20.44.17.jpg' %}" class="img-fluid rounded mx-auto d-block rounded shadow" style="height: 550px; width: auto;">
+    <div class="text-center mt-3">
+        <button type="button" class="btn btn-primary">Like <i class="bi bi-hand-thumbs-up-fill"></i></button>
+        <button type="button" class="btn btn-primary">Скачать <i class="bi bi-box-arrow-in-down"></i></button>
+        <button type="button" class="btn btn-success">Дальше</button>
+    </div>
+</div>
+{% endblock %}

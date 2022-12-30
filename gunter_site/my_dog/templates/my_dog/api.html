@@ -1,0 +1,51 @@
+{% extends 'my_dog/layout.html' %}
+{% load static %}
+{% block content %}
+<div class="container-md">
+<table class="table table-striped">
+    <thead>
+        <th scope="col">URL</th>
+        <th scope="col">Описание</th>
+        <th scope="col">Пример</th>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">/photos/count</th>
+            <td>Возвращает список всех фото с id</td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Все фотографии</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">/photos/id</th>
+            <td>Информация по конкретной фотографии</td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Инфа по фото</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">/photos/download/id</th>
+            <td>Скачать фото по id, либо случайное</td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Скачать фото</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">/photos/tags</th>
+            <td>Открыть случайную фотографию из указанного списка тегов</td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">Случайная фотка</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+{% endblock %}
