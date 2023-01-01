@@ -1,0 +1,87 @@
+.parent {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.tags {
+    position: relative;
+    top: 0;
+    left: 38%;
+}
+
+#photo {
+    height: 490px;
+    width: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.like_image {
+    height: auto;
+    width: 90px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -45px;
+    opacity: 0;
+}
+
+.like_animate_svg {
+    animation-name: like_anim;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-in-out;
+}
+
+.like_animate_img {
+    animation-name: like_anim_img;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes like_anim {
+    0% {
+        width: 30px;
+        opacity: 0;
+        filter: drop-shadow(4px 3px 10px rgb(240 46 170 / 0.8));
+    }
+    10% {
+        transform: rotate(15deg);
+    }
+    25% {
+        width: 110px;
+        opacity: 1;
+    }
+    35% {
+        transform: rotate(-8deg);
+        width: 80px;
+    }
+    50% {
+        width: 97px;
+        transform: rotate(4deg);
+        opacity: 1;
+        filter: drop-shadow(4px 3px 10px rgb(240 46 170 / 0.8));
+        box-shadow: ;
+    }
+    85% {
+        width: 90px;
+        transform: rotate(8deg);
+    }
+    100% {
+        opacity: 0;
+        top: 100px;
+    }
+}
+
+@keyframes like_anim_img {
+    0% {
+        filter: brightness(100%);
+    }
+    20% {
+        filter: brightness(60%);
+    }
+    100% {
+        filter: brightness(100%);
+    }
+}

@@ -2,12 +2,21 @@
 {% load static %}
 {% block content %}
 <div class="text-center">
-<!--    <img src="{% static 'img/2022-12-29 20.44.17.jpg' %}" class="img-fluid rounded mx-auto d-block rounded shadow" style="height: 550px; width: auto;">-->
-    <img src="{{ photo_name.photo.url }}" class="img-fluid rounded mx-auto d-block rounded shadow" style="height: 550px; width: auto;">
+    <div class="parent">
+        <img src="{{ photo_name.photo.url }}" id="photo" class="img-fluid rounded mx-auto d-block rounded shadow" style="height: 550px; width: auto;">
+        <img src="{% static '/my_dog/like-action.svg' %}" id="heart_svg" class="like_image">
+    </div>
     <div class="text-center mt-3">
-        <button type="button" class="btn btn-primary">Like <i class="bi bi-hand-thumbs-up-fill"></i></button>
-        <button type="button" class="btn btn-primary">Скачать <i class="bi bi-box-arrow-in-down"></i></button>
-        <button type="button" class="btn btn-success">Дальше</button>
+        <button type="button" class="btn btn-primary position-relative ms-3 me-3" id="like_btn">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="like_count">
+                {{ likes_count }}
+                <span class="visually"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg></span>
+            </span>
+            Like <i class="bi bi-hand-thumbs-up-fill"></i></button>
+        <button type="button" id="download_btn" class="btn btn-primary ms-3 me-3">Скачать <i class="bi bi-box-arrow-in-down"></i></button>
+        <button type="button" id="next_photo" class="btn btn-success ms-3 me-3">Дальше</button>
     </div>
 </div>
+
+<script src="{% static 'my_dog/js/main.js' %}"></script>
 {% endblock %}
