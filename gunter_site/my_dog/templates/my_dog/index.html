@@ -1,10 +1,21 @@
 {% extends 'my_dog/layout.html' %}
 {% load static %}
 {% block content %}
+
 <div class="text-center">
-    <div class="parent">
-        <img src="{{ photo_name.photo.url }}" id="photo" class="img-fluid rounded mx-auto d-block rounded shadow" style="height: 550px; width: auto;">
-        <img src="{% static '/my_dog/like-action.svg' %}" id="heart_svg" class="like_image">
+    <div class="photo" id="block_photo">
+        <div class="parent" name="photo_block">
+            <div class="d-flex align-items-stretch">
+            <img src="{{ photo_name.photo.url }}" id="photo" class="img-fluid figure-img rounded mx-auto d-block rounded shadow" style="height: 550px; width: auto;">
+            <img src="{% static '/my_dog/like-action.svg' %}" id="heart_svg" class="like_image">
+            </div>
+        </div>
+    </div>
+        <div class="tags" name="tags">
+            {% for cat in categories %}
+            <span class="badge bg-dark me-1">#{{cat|lower}}</span>
+            {% endfor %}
+        </div>
     </div>
     <div class="text-center mt-3">
         <button type="button" class="btn btn-primary position-relative ms-3 me-3" id="like_btn">
@@ -13,10 +24,9 @@
                 <span class="visually"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg></span>
             </span>
             Like <i class="bi bi-hand-thumbs-up-fill"></i></button>
-        <button type="button" id="download_btn" class="btn btn-primary ms-3 me-3">Скачать <i class="bi bi-box-arrow-in-down"></i></button>
-        <button type="button" id="next_photo" class="btn btn-success ms-3 me-3">Дальше</button>
+        <button type="button" id="download_btn" class="btn btn-primary ms-3 me-3" id="download_btn">Скачать <i class="bi bi-box-arrow-in-down"></i></button>
+        <button type="button" id="next_photo" class="btn btn-success ms-3 me-3">Далее</button>
     </div>
 </div>
-
 <script src="{% static 'my_dog/js/main.js' %}"></script>
 {% endblock %}

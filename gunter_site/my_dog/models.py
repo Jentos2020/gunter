@@ -13,6 +13,7 @@ class Photo(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     day_photo = models.BooleanField(default=False)
     category = models.ManyToManyField(Category)
+    downloads = models.BigIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.photo.name

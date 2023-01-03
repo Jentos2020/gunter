@@ -4,11 +4,12 @@
     left: 0;
 }
 
-.tags {
-    position: relative;
-    top: 0;
-    left: 38%;
+.photo {
+    position: absolute
+    display: inline-block;
 }
+
+
 
 #photo {
     height: 490px;

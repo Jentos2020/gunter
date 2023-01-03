@@ -10,4 +10,5 @@ urlpatterns = [
     path('api', APIPage.as_view(), name='api'),
     path('next_photo', next_photo, name='next_photo'),
     path('like_photo', like_photo, name='like_photo'),
+    path('download_photo', download_photo, name='download_photo'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

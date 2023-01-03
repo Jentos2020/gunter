@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
-from .models import Photo, Rating
+from .models import Photo, Rating, Category
 from random import randint
 from django.views.decorators.csrf import csrf_exempt
 
@@ -22,8 +22,24 @@ class MainPage(TemplateView):
         while not photo: photo = Photo.objects.filter(pk=randint(1, max_pk)).first()
         data['photo_name'] = photo
         data['likes_count'] = likes_count = Rating.objects.filter(score=photo).count()
+        data['categories'] = photo.category.all()
         return data
 
+
+def download_photo(request):
+    if request.method == 'GET':
+        global photo
+        current_photo = Photo.objects.get(pk=photo.pk)
+        if current_photo.downloads:
+            a = current_photo.downloads
+            current_photo.downloads = a + 1
+            current_photo.save()
+        else:
+            current_photo.downloads = 1
+            current_photo.save()
+        return HttpResponse(photo.photo.url)
+    else:
+        return HttpResponse("Only GET allowed")
 
 def next_photo(request):
     if request.method == 'GET':
@@ -37,6 +53,7 @@ def next_photo(request):
             data={
                 'photo': photo.photo.url,
                 'likes': likes_count,
+                'cats': list(photo.category.all().values()),
             },
         )
     else:
