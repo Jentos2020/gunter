@@ -1,8 +1,14 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
+from rest_framework import generics, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
 from .models import Photo, Rating, Category
 from random import randint
 from django.views.decorators.csrf import csrf_exempt
+
+from .serializers import CategorySerializer, PhotoSerializer, AllPhotoSerializer
 
 max_pk = None
 photo = None
@@ -81,3 +87,20 @@ class BioPage(TemplateView):
 
 class APIPage(TemplateView):
     template_name = 'my_dog/api.html'
+
+
+class CategoriesAPI(viewsets.ReadOnlyModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+    @action(detail=True, methods=['get'])
+    def photo(self, request, pk=None):
+        category = self.get_object()
+        photo = Photo.objects.filter(category=category)
+        serializer = PhotoSerializer(photo, many=True)
+        return Response(serializer.data)
+
+
+class PhotoAPI(viewsets.ReadOnlyModelViewSet):
+    queryset = Photo.objects.all()
+    serializer_class = AllPhotoSerializer

@@ -24,7 +24,6 @@ SECRET_KEY = 'django-insecure-u3i6kddcd*3o$&aor5po*&_9c*q8zl*#f0g3hd%-l&4mln30vy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'my_dog',
     'django_celery_results',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +143,10 @@ CACHES = {
 }
 
 CELERY_CACHE_BACKEND = 'default'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}
