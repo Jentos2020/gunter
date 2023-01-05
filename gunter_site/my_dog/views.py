@@ -104,3 +104,10 @@ class CategoriesAPI(viewsets.ReadOnlyModelViewSet):
 class PhotoAPI(viewsets.ReadOnlyModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = AllPhotoSerializer
+
+    @action(detail=True, methods=['get'])
+    def info(self, request, pk=None):
+        photo_id = self.get_object()
+        photo = Photo.objects.filter(pk=photo_id.pk)
+        serializer = PhotoSerializer(photo, many=True)
+        return Response({'data': serializer.data, 'likes': Rating.objects.filter(score=photo_id.pk).count()})
