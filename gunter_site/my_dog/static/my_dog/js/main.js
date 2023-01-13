@@ -1,20 +1,25 @@
 let photo = document.querySelector('#photo');
 let like_svg = document.querySelector('#heart_svg');
 
-//$(document).ready(function() {
-//    $('#heart_svg').width($('#photo').width());
-//    console.log('run fun');
-//});
-
 $("#next_photo").click(function (e) {
     e.preventDefault();
     $.ajax({
         type: 'GET',
         url: "/next_photo",
+        beforeSend: function() {
+            $('#photo').hide();
+            $('#photo').attr("src",'');
+            $("#next_photo").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Загрузка...');
+            $("#next_photo").addClass('disabled');
+        },
+        complete: function() {
+            $('#photo').show();
+            $("#next_photo").html('Далее');
+            $("#next_photo").removeClass('disabled');
+        },
         success: function (response) {
         $('.tags').html('');
             for (let num = 0; num < response.cats.length; num++) {
-            	console.log(response.cats[num].photo_category)
             	$('.tags').append(`<span class="badge bg-dark me-1">#${response.cats[num].photo_category.toLowerCase()}</span>`);
             }
             $('#photo').attr("src",response.photo);
@@ -77,4 +82,3 @@ $(function(){
 
 	});
 });
-
